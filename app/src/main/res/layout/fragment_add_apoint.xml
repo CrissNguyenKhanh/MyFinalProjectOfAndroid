@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Nội dung form nhập -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Appointment Date -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Appointment Date"
+                />
+
+            <EditText
+                android:id="@+id/edtAppointmentDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="YYYY-MM-DD HH:mm"
+                android:focusable="false"
+                android:inputType="none" />
+
+            <!-- Reason -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reason" />
+
+            <EditText
+                android:id="@+id/edtReason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter the reason for the examination" />
+
+            <!-- Status -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status" />
+
+            <EditText
+                android:id="@+id/edtStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="PENDING / CONFIRMED / CANCELLED" />
+
+            <!-- Submit Button -->
+            <Button
+                android:id="@+id/btnAddAppointment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add appointment"
+                android:layout_marginTop="24dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Loading Overlay -->
+    <LinearLayout
+        android:id="@+id/loadingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyleLarge" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đang tạo cuộc hẹn..."
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+</FrameLayout>

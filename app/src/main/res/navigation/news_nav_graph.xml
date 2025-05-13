@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/news_nav_graph"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.ArticleFragment"
+        android:label="ArticleFragment" >
+
+        <argument
+            android:name="article"
+            app:argType="com.example.retrofitwrooom.model.Article" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/headlinesFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.HeadlinesFragment"
+        android:label="HeadlinesFragment" >
+        <action
+            android:id="@+id/action_headlinesFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+        <action
+            android:id="@+id/action_headlinesFragment_to_mainFragment2"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.FavouriteFragment"
+        android:label="FavouriteFragment" >
+        <action
+            android:id="@+id/action_favouriteFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment2"
+        android:name="com.example.retrofitwrooom.ui.fragments.SearchFragment"
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment2_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_headlinesFragment"
+            app:destination="@id/headlinesFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_benhNhanFragment"
+            app:destination="@id/benhNhanFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_nav_graph"
+            app:destination="@id/nav_graph" />
+        <action
+            android:id="@+id/action_mainFragment_to_mainDoctorFragment"
+            app:destination="@id/mainDoctorFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_mainDoctorNaoFragment"
+            app:destination="@id/mainDoctorNaoFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_benhNhanStaticsFragment"
+            app:destination="@id/benhNhanStaticsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_doctorPhoiFragment"
+            app:destination="@id/doctorPhoiFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_benhNhanTimFragment"
+            app:destination="@id/benhNhanTimFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_login2Fragment"
+            app:destination="@id/login2Fragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_doctorStaticFragment2"
+            app:destination="@id/doctorStaticFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/login2Fragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.login2Fragment"
+        android:label="fragment_login2"
+        tools:layout="@layout/fragment_login2" >
+        <action
+            android:id="@+id/action_login2Fragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_login2Fragment_to_loginbenhnhanFragment"
+            app:destination="@id/loginbenhnhanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/benhNhanFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.BenhNhanFragment"
+        android:label="BenhNhanFragment" >
+        <action
+            android:id="@+id/action_benhNhanFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_benhNhanFragment_to_benhnhanUpdateFragment"
+            app:destination="@id/benhnhanUpdateFragment" />
+        <action
+            android:id="@+id/action_benhNhanFragment_to_addBenhNhanFragment"
+            app:destination="@id/addBenhNhanFragment" />
+        <action
+            android:id="@+id/action_benhNhanFragment_to_mainFragment2"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_benhNhanFragment_to_hosobenhanFragment"
+            app:destination="@id/hosobenhanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/benhnhanUpdateFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.update.benhnhanUpdateFragment"
+        android:label="benhnhanUpdateFragment" >
+        <action
+            android:id="@+id/action_benhnhanUpdateFragment_to_benhNhanFragment"
+            app:destination="@id/benhNhanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addBenhNhanFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.add.addBenhNhanFragment"
+        android:label="addBenhNhanFragment" >
+        <action
+            android:id="@+id/action_addBenhNhanFragment_to_benhNhanFragment"
+            app:destination="@id/benhNhanFragment" />
+    </fragment>
+    <include app:graph="@navigation/nav_graph" />
+    <fragment
+        android:id="@+id/addDoctorFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.doctor.addDoctorFragment"
+        android:label="fragment_add_doctor"
+        tools:layout="@layout/fragment_add_doctor" >
+        <action
+            android:id="@+id/action_addDoctorFragment_to_doctorFragment"
+            app:destination="@id/doctorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.doctor.doctorFragment"
+        android:label="fragment_doctor"
+        tools:layout="@layout/fragment_doctor" >
+        <action
+            android:id="@+id/action_doctorFragment_to_addDoctorFragment"
+            app:destination="@id/addDoctorFragment" />
+        <action
+            android:id="@+id/action_doctorFragment_to_lyLichDoctorFragment"
+            app:destination="@id/lyLichDoctorFragment" />
+        <action
+            android:id="@+id/action_doctorFragment_to_mainDoctorFragment"
+            app:destination="@id/mainDoctorFragment" />
+        <action
+            android:id="@+id/action_doctorFragment_to_mainDoctorNaoFragment"
+            app:destination="@id/mainDoctorNaoFragment" />
+        <action
+            android:id="@+id/action_doctorFragment_to_doctorPhoiFragment"
+            app:destination="@id/doctorPhoiFragment" />
+        <action
+            android:id="@+id/action_doctorFragment_to_benhNhanTimFragment"
+            app:destination="@id/benhNhanTimFragment" />
+        <action
+            android:id="@+id/action_doctorFragment_to_mainDoctorFragment2"
+            app:destination="@id/mainDoctorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lyLichDoctorFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.doctor.lyLichDoctorFragment"
+        android:label="fragment_ly_lich_doctor"
+        tools:layout="@layout/fragment_ly_lich_doctor" >
+        <action
+            android:id="@+id/action_lyLichDoctorFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_lyLichDoctorFragment_to_callFragment"
+            app:destination="@id/callFragment" />
+        <action
+            android:id="@+id/action_lyLichDoctorFragment_to_shareFragment"
+            app:destination="@id/shareFragment" />
+        <action
+            android:id="@+id/action_lyLichDoctorFragment_to_mainDoctorFragment"
+            app:destination="@id/mainDoctorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainDoctorFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.doctor.MainDoctorFragment"
+        android:label="fragment_main_doctor"
+        tools:layout="@layout/fragment_main_doctor" >
+        <action
+            android:id="@+id/action_mainDoctorFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_mainDoctorFragment_to_doctorFragment"
+            app:destination="@id/doctorFragment" />
+        <action
+            android:id="@+id/action_mainDoctorFragment_to_lyLichDoctorFragment"
+            app:destination="@id/lyLichDoctorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainDoctorNaoFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.doctor.mainDoctorNaoFragment"
+        android:label="mainDoctorNaoFragment" >
+        <action
+            android:id="@+id/action_mainDoctorNaoFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_mainDoctorNaoFragment_to_doctorFragment"
+            app:destination="@id/doctorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.doctor.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/callFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.doctor.callFragment"
+        android:label="fragment_call"
+        tools:layout="@layout/fragment_call" />
+    <fragment
+        android:id="@+id/shareFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.doctor.shareFragment"
+        android:label="fragment_share"
+        tools:layout="@layout/fragment_share" >
+        <action
+            android:id="@+id/action_shareFragment_to_lyLichDoctorFragment"
+            app:destination="@id/lyLichDoctorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/benhNhanStaticsFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.add.BenhNhanStaticsFragment"
+        android:label="BenhNhanStaticsFragment" >
+        <action
+            android:id="@+id/action_benhNhanStaticsFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.startFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment_to_login2Fragment"
+            app:destination="@id/login2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorPhoiFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.doctor.DoctorPhoiFragment"
+        android:label="fragment_doctor_phoi"
+        tools:layout="@layout/fragment_doctor_phoi" >
+        <action
+            android:id="@+id/action_doctorPhoiFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_doctorPhoiFragment_to_doctorFragment"
+            app:destination="@id/doctorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/benhNhanTimFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.doctor.BenhNhanTimFragment"
+        android:label="fragment_benh_nhan_tim"
+        tools:layout="@layout/fragment_benh_nhan_tim" >
+        <action
+            android:id="@+id/action_benhNhanTimFragment_to_doctorFragment"
+            app:destination="@id/doctorFragment" />
+        <action
+            android:id="@+id/action_benhNhanTimFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hosobenhanFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.hosobenhanFragment"
+        android:label="hosobenhanFragment" >
+        <action
+            android:id="@+id/action_hosobenhanFragment_to_benhNhanFragment"
+            app:destination="@id/benhNhanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginbenhnhanFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.loginbenhnhanFragment"
+        android:label="fragment_loginbenhnhan"
+        tools:layout="@layout/fragment_loginbenhnhan" >
+        <action
+            android:id="@+id/action_loginbenhnhanFragment_to_login2Fragment"
+            app:destination="@id/login2Fragment" />
+        <action
+            android:id="@+id/action_loginbenhnhanFragment_to_fullthongtinvedoctorFragment"
+            app:destination="@id/fullthongtinvedoctorFragment" />
+        <action
+            android:id="@+id/action_loginbenhnhanFragment_to_login2Fragment2"
+            app:destination="@id/login2Fragment" />
+        <action
+            android:id="@+id/action_loginbenhnhanFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullthongtinvedoctorFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.fullthongtinvedoctorFragment"
+        android:label="fragment_fullthongtinvedoctor"
+        tools:layout="@layout/fragment_fullthongtinvedoctor" >
+        <action
+            android:id="@+id/action_fullthongtinvedoctorFragment_to_loginbenhnhanFragment"
+            app:destination="@id/loginbenhnhanFragment" />
+        <action
+            android:id="@+id/action_fullthongtinvedoctorFragment_to_addApointFragment"
+            app:destination="@id/addApointFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addApointFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.addApointFragment"
+        android:label="addApointFragment" >
+        <action
+            android:id="@+id/action_addApointFragment_to_fullthongtinvedoctorFragment"
+            app:destination="@id/fullthongtinvedoctorFragment" />
+        <action
+            android:id="@+id/action_addApointFragment_to_appointmentDetailsFragment2"
+            app:destination="@id/appointmentDetailsFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.notification.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" >
+        <action
+            android:id="@+id/action_notificationFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/appointmentDetailsFragment2"
+        android:name="com.example.retrofitwrooom.ui.fragments.appointmentDetailsFragment"
+        android:label="fragment_appointment_details"
+        tools:layout="@layout/fragment_appointment_details" >
+        <action
+            android:id="@+id/action_appointmentDetailsFragment2_to_loginbenhnhanFragment"
+            app:destination="@id/loginbenhnhanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.retrofitwrooom.ui.fragments.chatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" >
+        <action
+            android:id="@+id/action_chatFragment_to_loginbenhnhanFragment"
+            app:destination="@id/loginbenhnhanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorStaticFragment2"
+        android:name="com.example.retrofitwrooom.ui.fragments.doctor.DoctorStaticFragment"
+        android:label="fragment_doctor_static"
+        tools:layout="@layout/fragment_doctor_static" >
+        <action
+            android:id="@+id/action_doctorStaticFragment2_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+</navigation>

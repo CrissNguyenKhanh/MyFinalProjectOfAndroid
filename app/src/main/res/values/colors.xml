@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="lightPurple">#6F5378</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="purple">#593c8f</color>
+    <color name="yellow">#ffc000</color>
+    <color name="pink">#F88379</color>
+    <color name="red">#c13b34</color>
+    <color name="khanhvip">#E3C2E9</color>
+    <color name="grey">#6F6F68</color>
+    <color name="fortooth">#E1CFEF</color>
+    <color name="forbrain">#E8E0DF</color>
+    <color name="colorPrimary">#1FE4EB</color>
+    <color name="skyblue">#05A2F4</color>
+    <color name="forlung">#ABF6ED</color>
+    <color name="forheart">#FBBFCC</color>
+    <color name="lightPurple2">#E7C6F1</color>
+    <color name="light_blue">#E0F7FA</color> <!-- Bệnh nhân -->
+    <color name="light_gray">#F1F1F1</color> <!-- Bác sĩ -->
+
+</resources>

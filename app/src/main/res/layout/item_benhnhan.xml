@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="6dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Ảnh đại diện -->
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="141dp"
+            android:layout_height="189dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/doctor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Tên -->
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nguyễn Văn A"
+            android:textSize="14sp"
+            android:textColor="@color/purple"
+            android:textStyle="bold"
+            android:background="@drawable/piink_border"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@id/imageView5"
+            app:layout_constraintTop_toTopOf="@id/imageView5"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="8dp" />
+
+        <!-- Giới tính -->
+
+        <TextView
+            android:id="@+id/txtDepartMent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Giới tính: Nam"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@id/txtName"
+            app:layout_constraintTop_toBottomOf="@id/txtName"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="4dp" />
+
+        <!-- Ngày sinh -->
+        <TextView
+            android:id="@+id/Role"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Ngày sinh: 01/01/2000"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@id/txtDepartMent"
+            app:layout_constraintTop_toBottomOf="@id/txtDepartMent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="2dp" />
+
+        <!-- SĐT -->
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="SĐT: 0123456789"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@id/Role"
+            app:layout_constraintTop_toBottomOf="@id/Role"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="2dp" />
+
+        <!-- Bác sĩ phụ trách -->
+        <TextView
+            android:id="@+id/doctor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Bác sĩ phụ trách: BS. Nguyễn Văn B"
+            android:textSize="13sp"
+            android:textColor="@color/purple"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="@id/phone"
+            app:layout_constraintTop_toBottomOf="@id/phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="2dp" />
+
+        <!-- Tình trạng khám -->
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Tình trạng: Đã khám"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:drawableStart="@drawable/tick"
+          android:drawablePadding="2dp"
+          app:layout_constraintStart_toStartOf="@id/doctor"
+         app:layout_constraintTop_toBottomOf="@id/doctor"
+         app:layout_constraintEnd_toEndOf="parent"
+          android:layout_marginTop="6dp" />
+
+        <!-- Mô tả -->
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Mô tả: Bệnh nhân có tiền sử cao huyết áp, đang điều trị theo phác đồ của bác sĩ chuyên khoa."
+            android:textSize="13sp"
+            android:textColor="@android:color/darker_gray"
+            android:lineSpacingExtra="4dp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            app:layout_constraintStart_toStartOf="@id/statusText"
+            app:layout_constraintTop_toBottomOf="@id/statusText"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp" />
+
+        <!-- Hàng nút: Sửa - Xoá -->
+        <LinearLayout
+            android:id="@+id/buttonLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/puple_button_stoke"
+                android:text="Sửa"
+                android:textColor="@color/white" />
+
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="wrap_content" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDelete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Xoá"
+                android:background="@drawable/puple_button_stoke"
+                android:textColor="@color/white" />
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="wrap_content" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnprint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="More"
+                android:background="@drawable/puple_button_stoke"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

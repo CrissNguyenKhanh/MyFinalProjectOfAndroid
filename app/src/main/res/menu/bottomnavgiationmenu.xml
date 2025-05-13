@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+   <item
+       android:id="@+id/headlinesFragment"
+       android:title="HeadLínes"
+       android:icon="@drawable/headline_icon" />
+    <item
+        android:id="@+id/favouriteFragment"
+        android:title="Favourite"
+        android:icon="@drawable/favorite_white" />
+    <item
+        android:id="@+id/searchFragment2"
+        android:title="Search"
+        android:icon="@drawable/search_svgrepo_com" />
+</menu>
