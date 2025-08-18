@@ -98,7 +98,13 @@ class MainFragment : Fragment() {
             findNavController().navigate(R.id.action_mainFragment_to_benhNhanTimFragment)
         }
         binding.edtClickbell.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_notificationFragment)
+            val bundle = Bundle().apply {
+                putParcelable("doctor", doctor)
+            }
+            findNavController().navigate(
+                R.id.action_mainFragment_to_notificationByMeFragment,
+                bundle
+            )
         }
         binding.analyticsdoctor.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_doctorStaticFragment2)
