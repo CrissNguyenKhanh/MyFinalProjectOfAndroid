@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvDoctorName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chat với Bác sĩ"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/etMessage"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:hint="Nhập tin nhắn..."
+        android:gravity="top|start"
+        android:background="@drawable/white_bg_top_color"
+        android:padding="10dp"
+        android:inputType="textMultiLine" />
+
+</LinearLayout>

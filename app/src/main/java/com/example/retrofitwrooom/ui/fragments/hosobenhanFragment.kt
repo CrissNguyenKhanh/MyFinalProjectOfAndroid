@@ -58,7 +58,6 @@ class hosobenhanFragment : Fragment() {
         viewModel = ViewModelProvider(this, vmFactory).get(benhanViewModel::class.java)
 
 
-
         arguments?.let {
             id = it.getLong("id")
             fullName = it.getString("fullName")

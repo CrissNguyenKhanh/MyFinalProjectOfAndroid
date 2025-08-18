@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".ui.fragments.doctor.DoctorStaticFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Large total doctors chart container -->
+        <LinearLayout
+            android:id="@+id/totalDoctorsChartContainer"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="#DCEAF7"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"
+            android:elevation="4dp"
+            android:clipToPadding="false">
+
+            <TextView
+                android:id="@+id/tvTotalDoctorsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Doctors in Hospital: 0"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#003366"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Placeholder for big chart -->
+            <View
+                android:id="@+id/viewTotalDoctorsChart"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:background="#8FBCE6" />
+        </LinearLayout>
+
+        <!-- Horizontal container for 4 specialty charts -->
+        <LinearLayout
+            android:id="@+id/specialtyChartsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <!-- Teeth Specialty -->
+            <LinearLayout
+                android:id="@+id/chartTeeth"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="200dp"
+                android:orientation="vertical"
+                android:background="#E3F2FD"
+                android:padding="12dp"
+                android:layout_margin="8dp"
+                android:elevation="3dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/teethLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="Teeth"
+                    android:textColor="#0D47A1"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/teethCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="14sp"
+                    android:textColor="#0D47A1"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Placeholder for teeth chart -->
+                <View
+                    android:id="@+id/teethGraph"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="#90CAF9" />
+            </LinearLayout>
+
+            <!-- Heart Specialty -->
+            <LinearLayout
+                android:id="@+id/chartHeart"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="200dp"
+                android:orientation="vertical"
+                android:background="#FFEBEE"
+                android:padding="12dp"
+                android:layout_margin="8dp"
+                android:elevation="3dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/heartLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Heart"
+                    android:textStyle="bold"
+                    android:textColor="#B71C1C"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/heartCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="14sp"
+                    android:textColor="#B71C1C"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Placeholder for heart chart -->
+                <View
+                    android:id="@+id/HeartGrapph"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="#EF9A9A" />
+            </LinearLayout>
+
+            <!-- Lung Specialty -->
+            <LinearLayout
+                android:id="@+id/chartLung"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="200dp"
+                android:orientation="vertical"
+                android:background="#E8F5E9"
+                android:padding="12dp"
+                android:layout_margin="8dp"
+                android:elevation="3dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/lungLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lung"
+                    android:textStyle="bold"
+                    android:textColor="#1B5E20"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/lungCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="14sp"
+                    android:textColor="#1B5E20"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Placeholder for lung chart -->
+                <View
+                    android:id="@+id/lungGraph"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="#A5D6A7" />
+            </LinearLayout>
+
+            <!-- Brain Specialty -->
+            <LinearLayout
+                android:id="@+id/chartBrain"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="200dp"
+                android:orientation="vertical"
+                android:background="#F3E5F5"
+                android:padding="12dp"
+                android:layout_margin="8dp"
+                android:elevation="3dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/brainLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Brain"
+                    android:textStyle="bold"
+                    android:textColor="#4A148C"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/brainCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="14sp"
+                    android:textColor="#4A148C"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Placeholder for brain chart -->
+                <View
+                    android:id="@+id/brainGraph"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="#CE93D8" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
