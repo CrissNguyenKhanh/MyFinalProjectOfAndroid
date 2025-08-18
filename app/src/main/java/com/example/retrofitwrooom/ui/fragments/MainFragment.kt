@@ -7,13 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.retrofitwrooom.R
 import com.example.retrofitwrooom.databinding.FragmentLogin2Binding
 import com.example.retrofitwrooom.databinding.FragmentMainBinding
 import com.example.retrofitwrooom.model.doctor
+import com.example.retrofitwrooom.repository.appointmentRepository
+import com.example.retrofitwrooom.viewModel.appointmentViewmodel
 import com.example.retrofitwrooom.viewModel.doctorViewModel
+import com.example.retrofitwrooom.viewModel.viewModelFactory.appointmentViewmodelFacotry
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +27,7 @@ private const val ARG_PARAM2 = "param2"
 
 class MainFragment : Fragment() {
     private lateinit var doctor_viewmodel: doctorViewModel
+    private lateinit var appontment_viewmodel: appointmentViewmodel
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -30,6 +35,11 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        val vmFactory = appointmentViewmodelFacotry(appointmentRepository())
+        appontment_viewmodel = ViewModelProvider(this, vmFactory)[appointmentViewmodel::class.java]
+
+
+
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -45,12 +55,26 @@ class MainFragment : Fragment() {
             .error(R.drawable.doctor)
             .into(binding.imageView3)
 
+        doctor?.let { doc ->
+            appontment_viewmodel.getCountDoctorById(doc.id)
 
+            // Lắng nghe kết quả count từ ViewModel
+            appontment_viewmodel.responseDataCountDoctorByid.observe(
+                viewLifecycleOwner
+            ) { response ->
+                if (response.isSuccessful) {
+                    val count = response.body() ?: 0
+                    binding.notificationBadge.text = "$count"
+                } else {
+                    binding.notificationBadge.text = "0"
+                }
+            }
+        }
         binding.VdCallIcon.setOnClickListener {
             val bundle = Bundle().apply {
-                putParcelable("doctor" , doctor)
+                putParcelable("doctor", doctor)
             }
-            findNavController().navigate(R.id.action_mainFragment_to_benhNhanFragment,bundle )
+            findNavController().navigate(R.id.action_mainFragment_to_benhNhanFragment, bundle)
         }
         binding.NoteIcon.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_nav_graph)
@@ -79,8 +103,10 @@ class MainFragment : Fragment() {
         binding.analyticsdoctor.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_doctorStaticFragment2)
         }
-        val navigationView = requireActivity().findViewById<com.google.android.material.navigation.NavigationView>(R.id.navigation_view)
-        val drawerLayout = requireActivity().findViewById<androidx.drawerlayout.widget.DrawerLayout>(R.id.drawer_layout)
+        val navigationView =
+            requireActivity().findViewById<com.google.android.material.navigation.NavigationView>(R.id.navigation_view)
+        val drawerLayout =
+            requireActivity().findViewById<androidx.drawerlayout.widget.DrawerLayout>(R.id.drawer_layout)
 
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -89,6 +115,7 @@ class MainFragment : Fragment() {
                     findNavController().navigate(R.id.action_mainFragment_to_login2Fragment)
                     true
                 }
+
                 else -> false
             }
         }

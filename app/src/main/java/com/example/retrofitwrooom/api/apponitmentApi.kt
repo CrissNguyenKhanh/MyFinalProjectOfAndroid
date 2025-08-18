@@ -10,6 +10,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface apponitmentApi {
 
@@ -19,11 +20,15 @@ interface apponitmentApi {
     ): Response<thongBao>
 
     @GET("/khanhdz/appointment/getAllApponitment")
-    suspend fun getAllAppointment():Response<List<appointment>>
+    suspend fun getAllAppointment(): Response<List<appointment>>
 
     @POST("/khanhdz/appointment/gettAppointmentBydoctorId")
     suspend fun getAllAppointmentBydoctorid(
         @Body Request: appointmentDoctorId
     ): Response<List<appointment>>
 
+    @GET("/khanhdz/appointment/count")
+    suspend fun getAppointmentCountByDoctorId(
+        @Query("doctorId") doctorId: Long
+    ): Response<Int>
 }

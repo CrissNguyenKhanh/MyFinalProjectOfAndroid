@@ -11,15 +11,18 @@ import retrofit2.Response
 class appointmentRepository {
 
     suspend fun addCuocHen(appontmentRequest: appontmentRequest): Response<thongBao> {
-        return  RetrofitIntanceDoctor.apiCuochen.addApponitment(appontmentRequest)
+        return RetrofitIntanceDoctor.apiCuochen.addApponitment(appontmentRequest)
     }
-    suspend fun  gettAllListappo():Response<List<appointment>>{
+
+    suspend fun gettAllListappo(): Response<List<appointment>> {
         return RetrofitIntanceDoctor.apiCuochen.getAllAppointment()
     }
 
-    suspend fun  gettAllListappobydoctorId(doctor_id:Long):Response<List<appointment>>{
+    suspend fun gettAllListappobydoctorId(doctor_id: Long): Response<List<appointment>> {
         val khanh = appointmentDoctorId(doctor_id)
         return RetrofitIntanceDoctor.apiCuochen.getAllAppointmentBydoctorid(khanh)
     }
 
+    suspend fun getCountByDoctorId(doctorId: Long) =
+        RetrofitIntanceDoctor.apiCuochen.getAppointmentCountByDoctorId(doctorId)
 }

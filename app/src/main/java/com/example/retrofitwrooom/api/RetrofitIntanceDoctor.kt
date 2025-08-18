@@ -17,7 +17,7 @@ class RetrofitIntanceDoctor {
                 .addInterceptor(logging)
                 .build()
             Retrofit.Builder()
-                .baseUrl("http://192.168.1.8:8081")
+                .baseUrl("http://192.168.30.60:8081")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
@@ -34,7 +34,7 @@ class RetrofitIntanceDoctor {
                 .addInterceptor(logging)
                 .build()
             Retrofit.Builder()
-                .baseUrl("http://192.168.1.8:8081")
+                .baseUrl("http://192.168.30.60:8081")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build()
@@ -48,9 +48,6 @@ class RetrofitIntanceDoctor {
         val apiCuochen by lazy {
             retrofit2.create(apponitmentApi::class.java)
         }
-
-
-
         val apiBenhNhan by lazy {
             retrofit2.create(benhNhanApi::class.java)
         }

@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.content.pm.PackageManager
 import android.Manifest
+
 class NotificationFragment : Fragment() {
 
     private var _binding: FragmentNotificationBinding? = null
@@ -68,7 +69,11 @@ class NotificationFragment : Fragment() {
             val detail = binding.etDetail.text.toString().trim()
 
             if (name.isEmpty() || detail.isEmpty()) {
-                Toast.makeText(requireContext(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Vui lòng nhập đầy đủ thông tin",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
 
@@ -79,12 +84,12 @@ class NotificationFragment : Fragment() {
                 time = selectedTime
             )
 
-            lifecycleScope.launch {
-                notificationDao.insertNotification(notification)
-                Toast.makeText(requireContext(), "Đã thêm thông báo", Toast.LENGTH_SHORT).show()
-                loadNotifications()
-                if (selectedTime.isNotEmpty()) setNotificationAlarm(notification)
-            }
+//            lifecycleScope.launch {
+//                notificationDao.in(notification)
+//                Toast.makeText(requireContext(), "Đã thêm thông báo", Toast.LENGTH_SHORT).show()
+//                loadNotifications()
+//                if (selectedTime.isNotEmpty()) setNotificationAlarm(notification)
+//            }
         }
 
         loadNotifications()
@@ -112,45 +117,63 @@ class NotificationFragment : Fragment() {
                 val sdfInput = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
                 val sdfOutput = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
 
-                appointmentList.forEach { appointment ->
-                    val dateString = appointment.appointment_date
-                    try {
-                        val date = sdfInput.parse(dateString)
-                        if (date != null) {
-                            val formattedTime = sdfOutput.format(date)
+                lifecycleScope.launch {
+                    val existing =
+                        notificationDao.getAllNotifications() // lấy tất cả notification đã có
 
-                            val notification = Notification(
-                                title = "Lịch hẹn với ${appointment.benhNhan.fullName}",
-                                detail = "Lý do: ${appointment.reason}",
-                                image = R.drawable.bell_icon,
-                                time = formattedTime
-                            )
+                    val newNotifications = appointmentList.mapNotNull { appointment ->
+                        try {
+                            val date = sdfInput.parse(appointment.appointment_date)
+                            if (date != null) {
+                                val formattedTime = sdfOutput.format(date)
+                                val notification = Notification(
+                                    title = "Lịch hẹn với ${appointment.benhNhan.fullName}",
+                                    detail = "Lý do: ${appointment.reason}",
+                                    image = R.drawable.bell_icon,
+                                    time = formattedTime
+                                )
 
-                            lifecycleScope.launch {
-                                notificationDao.insertNotification(notification)
-                                setNotificationAlarm(notification)
-                            }
+                                // chỉ giữ lại nếu chưa tồn tại
+                                if (existing.none { it.title == notification.title && it.time == notification.time }) {
+                                    notification
+                                } else null
+                            } else null
+                        } catch (e: Exception) {
+                            Log.w("NotificationFragment", "Lỗi parse ngày lịch hẹn: ${e.message}")
+                            null
                         }
-                    } catch (e: Exception) {
-                        Log.w("NotificationFragment", "Lỗi parse ngày lịch hẹn: ${e.message}")
                     }
+
+                    // insert một lần
+                    notificationDao.insertNotifications(newNotifications)
+
+                    // set alarm cho từng notification mới
+                    newNotifications.forEach { setNotificationAlarm(it) }
+
+                    loadNotifications()
                 }
 
-                loadNotifications()
             } else {
-                Toast.makeText(requireContext(), "Không tải được lịch hẹn", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Không tải được lịch hẹn", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
 
     private fun showDatePickerDialog() {
         val calendar = Calendar.getInstance()
-        DatePickerDialog(requireContext(), { _, year, month, dayOfMonth ->
-            TimePickerDialog(requireContext(), { _, hour, minute ->
-                selectedTime = "$year-${month + 1}-$dayOfMonth $hour:$minute:00"
-                Toast.makeText(requireContext(), selectedTime, Toast.LENGTH_SHORT).show()
-            }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show()
-        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
+        DatePickerDialog(
+            requireContext(),
+            { _, year, month, dayOfMonth ->
+                TimePickerDialog(requireContext(), { _, hour, minute ->
+                    selectedTime = "$year-${month + 1}-$dayOfMonth $hour:$minute:00"
+                    Toast.makeText(requireContext(), selectedTime, Toast.LENGTH_SHORT).show()
+                }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show()
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        ).show()
     }
 
     private fun setNotificationAlarm(notification: Notification) {
@@ -162,7 +185,11 @@ class NotificationFragment : Fragment() {
 
             calendar.set(date[0], date[1] - 1, date[2], time[0], time[1], 0)
         } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Lỗi định dạng thời gian: ${e.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Lỗi định dạng thời gian: ${e.message}",
+                Toast.LENGTH_SHORT
+            ).show()
             return
         }
 
@@ -191,7 +218,8 @@ class NotificationFragment : Fragment() {
                 pendingIntent
             )
         } catch (e: SecurityException) {
-            Toast.makeText(requireContext(), "Không có quyền báo thức chính xác", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), "Không có quyền báo thức chính xác", Toast.LENGTH_LONG)
+                .show()
         }
     }
 
@@ -232,7 +260,11 @@ class NotificationFragment : Fragment() {
                     lifecycleScope.launch {
                         notificationDao.updateNotification(notification)
                         loadNotifications()
-                        Toast.makeText(requireContext(), "Đã cập nhật thông báo", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Đã cập nhật thông báo",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }
@@ -242,14 +274,22 @@ class NotificationFragment : Fragment() {
 
     private fun checkPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-            ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS)
-            != PackageManager.PERMISSION_GRANTED) {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.POST_NOTIFICATIONS
+            )
+            != PackageManager.PERMISSION_GRANTED
+        ) {
             requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), 101)
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
-            ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.SCHEDULE_EXACT_ALARM)
-            != PackageManager.PERMISSION_GRANTED) {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.SCHEDULE_EXACT_ALARM
+            )
+            != PackageManager.PERMISSION_GRANTED
+        ) {
             requestPermissions(arrayOf(Manifest.permission.SCHEDULE_EXACT_ALARM), 102)
         }
     }
@@ -259,13 +299,18 @@ class NotificationFragment : Fragment() {
         _binding = null
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 101 && grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(requireContext(), "Đã cấp quyền thông báo", Toast.LENGTH_SHORT).show()
         }
         if (requestCode == 102 && grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(requireContext(), "Đã cấp quyền báo thức chính xác", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Đã cấp quyền báo thức chính xác", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 }
