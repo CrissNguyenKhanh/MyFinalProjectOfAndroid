@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 import com.example.retrofitwrooom.R
 import com.example.retrofitwrooom.adapter.appointmentAdapter
+import com.example.retrofitwrooom.adapter.appointmentAdapter2
 import com.example.retrofitwrooom.adapter.benhNhanAdapter
 import com.example.retrofitwrooom.databinding.FragmentAddApointBinding
 import com.example.retrofitwrooom.databinding.FragmentAppointmentDetailsBinding
@@ -26,12 +27,12 @@ import com.example.retrofitwrooom.viewModel.doctorViewModel
 import com.example.retrofitwrooom.viewModel.viewModelFactory.appointmentViewmodelFacotry
 import com.example.retrofitwrooom.viewModel.viewModelFactory.benhNhanViewmodelFactory
 
-class appointmentDetailsFragment  : Fragment() {
+class appointmentDetailsFragment : Fragment() {
 
     private lateinit var viewModel: appointmentViewmodel
     private var _binding: FragmentAppointmentDetailsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: appointmentAdapter
+    private lateinit var adapter: appointmentAdapter2
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +40,7 @@ class appointmentDetailsFragment  : Fragment() {
     ): View {
         _binding = FragmentAppointmentDetailsBinding.inflate(inflater, container, false)
 
-        adapter = appointmentAdapter(emptyList())
+        adapter = appointmentAdapter2(emptyList())
 
 //        binding.recyclerView2.apply {
 //            layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
@@ -48,7 +49,8 @@ class appointmentDetailsFragment  : Fragment() {
 //        }
 
 //       binding.recyclerView2.layoutManager = LinearLayoutManager(requireContext())
-        val staggeredLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        val staggeredLayoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.recyclerView2.layoutManager = staggeredLayoutManager
         binding.recyclerView2.adapter = adapter // <-- bạn QUÊN dòng này
         val vmFactory = appointmentViewmodelFacotry(appointmentRepository())
@@ -77,6 +79,7 @@ class appointmentDetailsFragment  : Fragment() {
             findNavController().navigate(R.id.action_appointmentDetailsFragment2_to_loginbenhnhanFragment)
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

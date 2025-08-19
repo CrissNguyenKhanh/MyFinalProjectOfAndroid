@@ -56,7 +56,7 @@ class MainFragment : Fragment() {
             .into(binding.imageView3)
 
         doctor?.let { doc ->
-            appontment_viewmodel.getCountDoctorById(doc.id)
+            appontment_viewmodel.getCountDoctorById_Accept(doc.id)
 
             // Lắng nghe kết quả count từ ViewModel
             appontment_viewmodel.responseDataCountDoctorByid.observe(
